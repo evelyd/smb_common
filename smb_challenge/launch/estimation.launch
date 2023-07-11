@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+    <include file="$(find smb)/launch/smb.launch"/>
+
+    <include file="$(find smb_msf_graph)/launch/smb_msf_graph.launch">
+    <arg name="loop_closure" default="true" doc="Loop closure"/>
+
+    <arg name="core_graph_config_param_file"  default="$(find smb_challenge)/config/core/core_graph_config.yaml"/>
+    <arg name="core_graph_param_file"         default="$(find smb_challenge)/config/core/core_graph_params.yaml"/>
+    <arg name="core_extrinsic_param_file"     default="$(find smb_challenge)/config/core/core_extrinsic_params.yaml"/>
+    <arg name="smb_graph_param_file"          default="$(find smb_challenge)/config/smb_specific/smb_graph_params.yaml"/>
+    <arg name="smb_extrinsic_param_file"      default="$(find smb_challenge)/config/smb_specific/smb_extrinsic_params.yaml"/>
+
+    </include>
+
+</launch>
