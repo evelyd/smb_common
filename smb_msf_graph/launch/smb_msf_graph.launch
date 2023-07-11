@@ -14,7 +14,10 @@
     <arg name="launch_rviz"           default="false" doc="whether to launch rviz"/>
     <arg name="launch_sensors"        default="false" doc="whether to launch the sensors on the robot"/>
     <arg name="map_saving_folder"     default="$(find smb_slam)/data/maps/" doc="Path for saving the map"/>
-
+    <arg name="loop_closure"
+        default="true"
+        doc="Loop closure"/>
+    </include>
     <!-- Alias to smb_estimator_graph replay script -->
     <include file="$(find smb_estimator_graph)/launch/smb_estimator_graph.launch"/>
 
@@ -28,6 +31,7 @@
             <arg name="launch_rviz" value="$(arg launch_rviz)" />
             <arg name="launch_sensors" value="$(arg launch_sensors)" />
             <arg name="map_saving_folder" value="$(arg map_saving_folder)" />
+            <arg name="loop_closure" value="$(arg loop_closure)">
         </include>
     </group>
 

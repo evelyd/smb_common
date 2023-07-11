@@ -4,7 +4,7 @@
 
     <include file="$(find smb_msf_graph)/launch/smb_msf_graph.launch">
     <arg name="loop_closure"
-        default=true
+        default="true"
         doc="Loop closure"/>
     </include>
     <!-- <include file="$(find smb_slam)/launch/online_slam.launch"/>
