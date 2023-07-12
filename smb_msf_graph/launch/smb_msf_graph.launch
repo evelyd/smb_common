@@ -7,9 +7,12 @@
     <arg name="lidar_odometry_topic_name"   default="/mapping_node/scan2map_odometry"/>
     
     <!-- Arguments -->
-
+    <arg name="use_localization" default="false"/>
     <arg name="cloud_topic"           default="/rslidar/points" doc="input topic for the lidar pointcloud"/>
-    <arg name="parameter_filename"    default="param_robosense_rs16.lua" doc="param file name"/>
+
+    <arg name="parameter_filename" value="param_robosense_rs16.lua" unless="$(arg use_localization)"/>
+    <arg name="parameter_filename" value="param_rs16_localization.lua" if="$(arg use_localization)"/>
+
 	<arg name="parameter_folder_path" default="$(find smb_slam)/config/open3d_slam/" doc="directory for the parameter files"/>
     <arg name="launch_rviz"           default="false" doc="whether to launch rviz"/>
     <arg name="launch_sensors"        default="false" doc="whether to launch the sensors on the robot"/>

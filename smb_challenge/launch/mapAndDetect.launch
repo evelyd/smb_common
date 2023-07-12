@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
+    <arg name="use_localization" default="true"/>
 
     <include file="$(find smb)/launch/smb.launch"/>
-
     <include file="$(find smb_msf_graph)/launch/smb_msf_graph.launch">
+    <arg name="use_localization" value="$(arg use_localization)"/>
     <arg name="map_saving_folder"     default="$(find smb_challenge)/data/maps/" doc="Path for saving the map"/>
     <arg name="pcd_file_path"         default="$(find smb_challenge)/data/maps/map_challenge2.pcd"/>
     <arg name="loop_closure" default="true" doc="Loop closure"/>
