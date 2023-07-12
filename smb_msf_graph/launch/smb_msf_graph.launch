@@ -44,7 +44,7 @@
             <arg name="launch_rviz" value="$(arg launch_rviz)" />
             <arg name="launch_sensors" value="$(arg launch_sensors)" />
             <arg name="map_saving_folder" value="$(arg map_saving_folder)" />
-            <arg name="loop_closure" value="$(arg loop_closure)"/>
+            <arg name="loop_closure" default="true" doc="Loop closure"/>
         </include>
     </group>
 

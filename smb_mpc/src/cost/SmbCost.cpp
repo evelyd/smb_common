@@ -81,6 +81,22 @@ SmbCost::getParameters(scalar_t time,
     // Eigen::Vector3d to get the reference position.
     // desiredTimeTrajectory is an std::vector<double> of the reference
     // timestamps.
+        //check edge cases
+    if (desiredTimeTrajectory.front() > time) {
+      referencePosition = SmbConversions::readPosition(desiredStateTrajectory.front());
+      referenceOrientation = SmbConversions::readRotation(desiredStateTrajectory.front());
+    }
+    else if (desiredTimeTrajectory.back() < time) {
+      referencePosition = SmbConversions::readPosition(desiredStateTrajectory.back());
+      referenceOrientation = SmbConversions::readRotation(desiredStateTrajectory.back());
+    }
+    else {
+      //find index of time stamp
+      int i = 0;
+      while (i < numPoses && desiredTimeTrajectory[i] < time) {
+        i++;
+      }
+    }
 
   } else { // desiredStateTrajectory.size() == 1, Do not change this
     referencePosition = SmbConversions::readPosition(desiredStateTrajectory[0]);
