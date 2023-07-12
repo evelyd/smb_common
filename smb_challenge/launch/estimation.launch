@@ -4,6 +4,8 @@
     <include file="$(find smb)/launch/smb.launch"/>
 
     <include file="$(find smb_msf_graph)/launch/smb_msf_graph.launch">
+    <arg name="map_saving_folder"     default="$(find smb_challenge)/data/maps/" doc="Path for saving the map"/>
+    <arg name="pcd_file_path"         default=""/>
     <arg name="loop_closure" default="true" doc="Loop closure"/>
 
     <arg name="core_graph_config_param_file"  default="$(find smb_challenge)/config/core/core_graph_config.yaml"/>
@@ -12,6 +14,11 @@
     <arg name="smb_graph_param_file"          default="$(find smb_challenge)/config/smb_specific/smb_graph_params.yaml"/>
     <arg name="smb_extrinsic_param_file"      default="$(find smb_challenge)/config/smb_specific/smb_extrinsic_params.yaml"/>
 
+    </include>
+
+    <include file="$(find object_detection)/launch/object_detection.launch">
+        <arg name="object_detection_classes" 
+        value="[24,25,39,56,74,11]"/>
     </include>
 
 </launch>

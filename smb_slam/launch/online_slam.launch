@@ -11,7 +11,8 @@
   <arg name="launch_rviz"           default="false" doc="whether to launch rviz"/>
   <arg name="launch_sensors"        default="false" doc="whether to launch the sensors on the robot"/>
   <arg name="map_saving_folder"     default="$(find smb_slam)/data/maps/" doc="Path for saving the map"/>
-  <arg name="loop_closure" 				  default="true"	doc="Whether to enable loop closure detection"/>
+  <arg name="loop_closure" 				  default="false"	doc="Whether to enable loop closure detection"/>
+  <arg name="pcd_file_path"         default="$(find smb_slam)/data/maps/map.pcd" doc="absolute path for loading the map used for localization"/>
   <!-- Potentially launch sensors -->
   <include file="$(find smb)/launch/sensors.launch" if="$(arg launch_sensors)"/>
 
@@ -24,6 +25,7 @@
     <arg name="map_saving_folder"     value="$(arg map_saving_folder)"/>
     <arg name="use_sim_time"          value="$(arg use_sim_time)"/>
     <arg name="loop_closure"          value="$(arg loop_closure)"/>
+    <arg name="pcd_file_path"         value="$(arg pcd_file_path)"/>
   </include>
 
 </launch>
