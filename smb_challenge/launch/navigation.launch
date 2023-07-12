@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <arg name="follow_waypoints" default="false"/>
+    <include file="$(find smb_navigation)/launch/navigate2d_ompl.launch">
+        <arg name="global_frame" value="world_graph_msf"/>
+        <arg name="map_frame" value="map_graph_msf"/>
+        <arg name="odom_topic" value="/graph_msf/est_odometry_odom_imu"/>
+        <arg name="use_global_map" value="true"/>
+        <arg name="follow_waypoints" value="(arg follow_waypoints)"/>
+    </include>
+</launch>

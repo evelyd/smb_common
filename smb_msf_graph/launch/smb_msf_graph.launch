@@ -27,14 +27,6 @@
 
     <arg name="pcd_file_path"         default="$(find smb_challenge)/data/maps/map.pcd"/>
 
-    <!-- Alias to smb_estimator_graph replay script -->
-    <include file="$(find smb_estimator_graph)/launch/smb_estimator_graph.launch">
-        <arg name="core_graph_config_param_file"  value="$(arg core_graph_config_param_file)"/>
-        <arg name="core_graph_param_file"         default="$(arg core_graph_param_file)"/>
-        <arg name="core_extrinsic_param_file"     default="$(arg core_extrinsic_param_file)"/>
-        <arg name="smb_graph_param_file"          default="$(arg smb_graph_param_file)"/>
-        <arg name="smb_extrinsic_param_file"      default="$(arg smb_extrinsic_param_file)"/>
-    </include>
 
     <group if="$(arg launch_o3d_slam)">
         <!-- Launch online_slam -->
@@ -50,5 +42,19 @@
             <arg name="loop_closure" default="true" doc="Loop closure"/>
         </include>
     </group>
+
+    <group>
+        <exec command="sleep 5" />
+        <exec command="echo '[TEAM2]localization done'" />
+    </group>
+
+    <!-- Alias to smb_estimator_graph replay script -->
+    <include file="$(find smb_estimator_graph)/launch/smb_estimator_graph.launch">
+        <arg name="core_graph_config_param_file"  value="$(arg core_graph_config_param_file)"/>
+        <arg name="core_graph_param_file"         default="$(arg core_graph_param_file)"/>
+        <arg name="core_extrinsic_param_file"     default="$(arg core_extrinsic_param_file)"/>
+        <arg name="smb_graph_param_file"          default="$(arg smb_graph_param_file)"/>
+        <arg name="smb_extrinsic_param_file"      default="$(arg smb_extrinsic_param_file)"/>
+    </include>
 
 </launch>
