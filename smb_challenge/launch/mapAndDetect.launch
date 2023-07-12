@@ -22,7 +22,7 @@
         value="[24,25,39,56,74,11]"/>
     </include>
 
-    <node pkg="tf" type="static_transform_publisher" name="detection_frame_node" args="9.18025 1.67759 0 0 0 -15 /world_graph_msf /detection_frame 10"/>
+    <node pkg="tf" type="static_transform_publisher" name="detection_frame_node" args="9.18025 1.67759 0 0 0 -15 /map_o3d /detection_frame 10"/>
 
     <!-- <include file="$(find smb_navigation)/launch/navigate2d_ompl.launch">
         <arg name="global_frame" value="world_graph_msf"/>

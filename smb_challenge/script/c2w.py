@@ -25,7 +25,7 @@ def detection_info_callback(msg):
         if info.position.z<0:
             continue
         try:
-            (trans,rot) = listener.lookupTransform('/world_graph_msf', '/rgb_camera_optical_link', rospy.Time(0))
+            (trans,rot) = listener.lookupTransform('/detection_frame', '/rgb_camera_optical_link', rospy.Time(0))
         except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException):
             continue
         rotation_matrix = tft.quaternion_matrix(rot)
