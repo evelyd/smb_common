@@ -30,6 +30,17 @@ ad_vector_t SmbSystemDynamics::systemFlowMap(
   ad_quat_t currentRotation = SmbConversions::readRotation(state);
 
   /// TODO: Compute positionDerivative and orientationDerivative here:
+    ad_vec3_t linearVelocity = ad_vec3_t::Zero();
+  linearVelocity[0] = v_x;
+  // transform from base frame to world frame
+  positionDerivative = currentRotation * linearVelocity;
+
+  ad_quat_t deltaRotation;
+  deltaRotation.w() = 0;
+  deltaRotation.x() = 0;
+  deltaRotation.y() = 0;
+  deltaRotation.z() = omega_z/2;
+  orientationDerivative = (currentRotation * deltaRotation);
 
   ad_vector_t stateDerivative = ad_vector_t::Zero(SmbDefinitions::STATE_DIM);
   stateDerivative << positionDerivative, orientationDerivative.coeffs();
