@@ -1,13 +1,20 @@
 #!/usr/bin/env python
 import rospy
+import rospkg
 import tf
+import json
+from os.path import join
 from geometry_msgs.msg import Point
 import tf.transformations as tft
 from object_detection_msgs.msg import   PointCloudArray,\
                                         ObjectDetectionInfo, ObjectDetectionInfoArray
 import numpy as np
+
 classAndPosition_dict = {}
-self.timer = rospy.Timer(rospy.Duration(10), self.demo_callback)
+rospack = rospkg.RosPack()
+dict_sace_path = join(rospack.get_path('smb_challenge'),'report')
+
+
 
 def detection_info_callback(msg):
     global classAndPosition_dict
@@ -36,10 +43,15 @@ def detection_info_callback(msg):
         print("[dict]:")
         print(classAndPosition_dict)
 
+def save_file_callback():
+    with open(dict_sace_path+'object_detection_dict.json', 'w') as json_file:
+        json.dump(classAndPosition_dict, json_file)
+    rospy.loginfo("save dict file")
 
 rospy.init_node('c2w_node')
-listener = tf.TransformListener()
 
+listener = tf.TransformListener()
+timer = rospy.Timer(rospy.Duration(10), save_file_callback)
 
 
 while not rospy.is_shutdown():
