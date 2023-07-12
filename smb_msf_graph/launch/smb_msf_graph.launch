@@ -14,9 +14,22 @@
     <arg name="launch_rviz"           default="false" doc="whether to launch rviz"/>
     <arg name="launch_sensors"        default="false" doc="whether to launch the sensors on the robot"/>
     <arg name="map_saving_folder"     default="$(find smb_slam)/data/maps/" doc="Path for saving the map"/>
-    <arg name="loop_closure" default="true" doc="Loop closure"/>
+    <arg name="loop_closure"          default="true"  doc="Loop closure"/>
+
+    <arg name="core_graph_config_param_file"  default="$(find smb_estimator_graph)/config/core/core_graph_config.yaml"/>
+    <arg name="core_graph_param_file"         default="$(find smb_estimator_graph)/config/core/core_graph_params.yaml"/>
+    <arg name="core_extrinsic_param_file"     default="$(find smb_estimator_graph)/config/core/core_extrinsic_params.yaml"/>
+    <arg name="smb_graph_param_file"          default="$(find smb_estimator_graph)/config/smb_specific/smb_graph_params.yaml"/>
+    <arg name="smb_extrinsic_param_file"      default="$(find smb_estimator_graph)/config/smb_specific/smb_extrinsic_params.yaml"/>
+
     <!-- Alias to smb_estimator_graph replay script -->
-    <include file="$(find smb_estimator_graph)/launch/smb_estimator_graph.launch"/>
+    <include file="$(find smb_estimator_graph)/launch/smb_estimator_graph.launch">
+        <arg name="core_graph_config_param_file"  value="$(arg core_graph_config_param_file)"/>
+        <arg name="core_graph_param_file"         default="$(arg core_graph_param_file)"/>
+        <arg name="core_extrinsic_param_file"     default="$(arg core_extrinsic_param_file)"/>
+        <arg name="smb_graph_param_file"          default="$(arg smb_graph_param_file)"/>
+        <arg name="smb_extrinsic_param_file"      default="$(arg smb_extrinsic_param_file)"/>
+    </include>
 
     <group if="$(arg launch_o3d_slam)">
         <!-- Launch online_slam -->
