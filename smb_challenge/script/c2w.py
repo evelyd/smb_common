@@ -12,7 +12,7 @@ import numpy as np
 
 classAndPosition_dict = {}
 rospack = rospkg.RosPack()
-dict_sace_path = join(rospack.get_path('smb_challenge'),'report')
+dict_save_path = join(rospack.get_path('smb_challenge'),'report')
 
 
 
@@ -37,14 +37,15 @@ def detection_info_callback(msg):
         print("[position_in_world]:")
         # print(position_in_world)
         if info.class_id not in classAndPosition_dict.keys():
-            classAndPosition_dict[info.class_id] = [position_in_world]
+            classAndPosition_dict[info.class_id] = [position_in_world.tolist()]
         else:
-            classAndPosition_dict[info.class_id].append(position_in_world)
+            classAndPosition_dict[info.class_id].append(position_in_world.tolist())
         print("[dict]:")
         print(classAndPosition_dict)
 
-def save_file_callback():
-    with open(dict_sace_path+'object_detection_dict.json', 'w') as json_file:
+def save_file_callback(timer):
+    print(dict_save_path+'/object_detection_dict.json')
+    with open(dict_save_path+'/object_detection_dict.json', 'w') as json_file:
         json.dump(classAndPosition_dict, json_file)
     rospy.loginfo("save dict file")
 
