@@ -12,7 +12,7 @@ import numpy as np
 
 classAndPosition_dict = {}
 rospack = rospkg.RosPack()
-dict_sace_path = join(rospack.get_path('smb_challenge'),'report')
+dict_save_path = join(rospack.get_path('smb_challenge'),'report')
 
 
 
@@ -43,8 +43,9 @@ def detection_info_callback(msg):
         print("[dict]:")
         print(classAndPosition_dict)
 
-def save_file_callback():
-    with open(dict_sace_path+'object_detection_dict.json', 'w') as json_file:
+def save_file_callback(timer):
+    print(dict_save_path+'/object_detection_dict.json')
+    with open(dict_save_path+'/object_detection_dict.json', 'w') as json_file:
         json.dump(classAndPosition_dict, json_file)
     rospy.loginfo("save dict file")
 
