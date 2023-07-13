@@ -37,9 +37,9 @@ def detection_info_callback(msg):
         print("[position_in_world]:")
         # print(position_in_world)
         if info.class_id not in classAndPosition_dict.keys():
-            classAndPosition_dict[info.class_id] = [position_in_world]
+            classAndPosition_dict[info.class_id] = [position_in_world.tolist()]
         else:
-            classAndPosition_dict[info.class_id].append(position_in_world)
+            classAndPosition_dict[info.class_id].append(position_in_world.tolist())
         print("[dict]:")
         print(classAndPosition_dict)
 
